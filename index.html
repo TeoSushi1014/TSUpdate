@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải xuống tự động</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .download-button:hover {
+            background-color: #45a049;
+        }
+        .language-selector {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="message" class="message"></div>
+        <button id="downloadButton" class="download-button">Tải xuống</button>
+        <div class="language-selector">
+            <select id="languageSelect">
+                <option value="vi">Tiếng Việt</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        const messages = {
+            "vi": "Chúc bạn một ngày tốt lành!",
+            "en": "Have a nice day!",
+            "es": "¡Que tengas un buen día!",
+            "fr": "Bonne journée!",
+            "de": "Einen schönen Tag noch!"
+        };
+
+        const downloadButton = document.getElementById('downloadButton');
+        const messageElement = document.getElementById('message');
+        const languageSelect = document.getElementById('languageSelect');
+
+        function updateLanguage() {
+            const selectedLanguage = languageSelect.value;
+            messageElement.textContent = messages[selectedLanguage];
+            downloadButton.textContent = selectedLanguage === 'vi' ? 'Tải xuống' : 'Download';
+        }
+
+        function downloadFile() {
+            const link = document.createElement('a');
+            link.href = './dl/optimize V1 - Copy.cmd';
+            link.download = 'optimize V1 - Copy.cmd';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        downloadButton.addEventListener('click', downloadFile);
+        languageSelect.addEventListener('change', updateLanguage);
+
+        // Khởi tạo ngôn ngữ mặc định
+        updateLanguage();
+    </script>
+</body>
+</html>
