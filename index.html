@@ -46,7 +46,7 @@
 <body>
     <div class="container">
         <div id="message" class="message"></div>
-        <button id="downloadButton" class="download-button">Tải xuống</button>
+        <button id="downloadButton" class="download-button" style="display: none;">Tải xuống</button>
         <div class="language-selector">
             <select id="languageSelect">
                 <option value="vi">Tiếng Việt</option>
@@ -60,11 +60,11 @@
 
     <script>
         const messages = {
-            "vi": "Chúc bạn một ngày tốt lành!",
-            "en": "Have a nice day!",
-            "es": "¡Que tengas un buen día!",
-            "fr": "Bonne journée!",
-            "de": "Einen schönen Tag noch!"
+            "vi": "Đang tải xuống tệp tin...",
+            "en": "Downloading file...",
+            "es": "Descargando archivo...",
+            "fr": "Téléchargement du fichier...",
+            "de": "Datei wird heruntergeladen..."
         };
 
         const downloadButton = document.getElementById('downloadButton');
@@ -86,11 +86,13 @@
             document.body.removeChild(link);
         }
 
-        downloadButton.addEventListener('click', downloadFile);
-        languageSelect.addEventListener('change', updateLanguage);
+        Tự động tải xuống khi trang được mở
+        window.onload = function() {
+            updateLanguage();
+            downloadFile();
+        };
 
-        // Khởi tạo ngôn ngữ mặc định
-        updateLanguage();
+        languageSelect.addEventListener('change', updateLanguage);
     </script>
 </body>
 </html>
